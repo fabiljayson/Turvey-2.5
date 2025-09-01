@@ -182,10 +182,10 @@
         </table>
         <p class="sub-text2 footer-hashen">A Web Solution by Jayson.</p>
     </center>
+    <div id="google_translate_element"></div>
     </div>
 
     <script>
-    // Simple Chatbot JavaScript
     let chatOpen = false;
     document.getElementById('chat-toggle').addEventListener('click', function() {
         const widget = document.getElementById('chat-widget');
@@ -250,5 +250,14 @@
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
     </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                    {pageLanguage: 'en'},
+                    'google_translate_element'
+                );
+            }
+            </script>
+            <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
