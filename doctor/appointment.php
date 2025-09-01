@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
     <title>Appointments</title>
     <style>
@@ -16,7 +17,81 @@
         .sub-table{
             animation: transitionIn-Y-bottom 0.5s;
         }
-</style>
+        
+        /* MiroTalk Integration Styles */
+        .call-button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .call-button {
+            padding: 15px 30px;
+            background: #4a6bdf;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 107, 223, 0.3);
+        }
+        
+        .call-button:hover {
+            background: #3a5bc7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 107, 223, 0.4);
+        }
+        
+        .call-button i {
+            margin-right: 10px;
+        }
+        
+        .mirotalk-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: none;
+        }
+        
+        .mirotalk-header {
+            background: #4a6bdf;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mirotalk-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .close-call {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .close-call:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .mirotalk-frame {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -179,6 +254,17 @@
                     
                 </tr>
                 
+                <!-- Call Button -->
+                <tr>
+                    <td colspan="4">
+                        <div class="call-button-container">
+                            <button class="call-button" onclick="openVideoCall()">
+                                <i class="fas fa-video"></i> Start Video Call
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                
                 <?php
 
 
@@ -327,6 +413,23 @@
                         
                         
             </table>
+            
+            <!-- MiroTalk Full Screen Video Conference -->
+            <div id="mirotalk-fullscreen" class="mirotalk-fullscreen">
+                <div class="mirotalk-header">
+                    <div class="mirotalk-title">Video Call in Progress</div>
+                    <button class="close-call" onclick="closeVideoCall()">
+                        <i class="fas fa-times"></i> End Call
+                    </button>
+                </div>
+                <iframe 
+                    id="mirotalk-frame"
+                    class="mirotalk-frame"
+                    allow="camera; microphone; display-capture; fullscreen; clipboard-read; clipboard-write; web-share; autoplay"
+                    src=""
+                ></iframe>
+            </div>
+            
         </div>
     </div>
     <?php
@@ -601,5 +704,42 @@
     ?>
     </div>
 
+    <script>
+        // MiroTalk Video Call Functions
+        function openVideoCall() {
+            const fullscreenDiv = document.getElementById('mirotalk-fullscreen');
+            const iframe = document.getElementById('mirotalk-frame');
+            
+            // Set the iframe source to the direct join URL
+            iframe.src = 'https://c2c.mirotalk.com/join?room=consultation&name=Dr.<?php echo $username; ?>';
+            
+            // Show the fullscreen container
+            fullscreenDiv.style.display = 'block';
+            
+            // Prevent scrolling on the background page
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoCall() {
+            const fullscreenDiv = document.getElementById('mirotalk-fullscreen');
+            const iframe = document.getElementById('mirotalk-frame');
+            
+            // Hide the fullscreen container
+            fullscreenDiv.style.display = 'none';
+            
+            // Stop the video call by removing the iframe source
+            iframe.src = '';
+            
+            // Re-enable scrolling on the background page
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close the video call when pressing the Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVideoCall();
+            }
+        });
+    </script>
 </body>
 </html>

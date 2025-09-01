@@ -1,9 +1,9 @@
 <?php
-// Put ALL PHP code at the TOP - this fixes session errors
+// Mettre tout le code PHP en haut pour éviter les erreurs de session
 session_start();
 
 if(isset($_SESSION["user"])){
-    if(($_SESSION["user"])=="" or $_SESSION['usertype']!='p'){ // Ensure this checks for 'p' for patient
+    if(($_SESSION["user"])=="" or $_SESSION['usertype']!='p'){ // Vérifie que c’est bien un patient
         header("location: ../login.php");
         exit();
     }else{
@@ -14,7 +14,7 @@ if(isset($_SESSION["user"])){
     exit();
 }
 
-// Import database
+// Importer la base de données
 include("../connection.php");
 
 $sqlmain= "select * from patient where pemail=?";
@@ -26,19 +26,19 @@ $userfetch=$userrow->fetch_assoc();
 $userid= $userfetch["pid"];
 $username=$userfetch["pname"];
 
-// Get data for dashboard (assuming patient dashboard needs these counts)
-date_default_timezone_set('Asia/Kolkata');
+// Données pour le tableau de bord
+date_default_timezone_set('Africa/Douala');
 $today = date('Y-m-d');
-$patientrow_count = $database->query("select * from patient;"); // Renamed to avoid conflict if $patientrow is used later
-$doctorrow_count = $database->query("select * from doctor;"); // Renamed
-$appointmentrow_count = $database->query("select * from appointment where appodate>='$today';"); // Renamed
-$schedulerow_count = $database->query("select * from schedule where scheduledate='$today';"); // Renamed
+$patientrow_count = $database->query("select * from patient;");
+$doctorrow_count = $database->query("select * from doctor;");
+$appointmentrow_count = $database->query("select * from appointment where appodate>='$today';");
+$schedulerow_count = $database->query("select * from schedule where scheduledate='$today';");
 
-// For the search datalist (doctors for patients to channel)
+// Pour la liste de recherche des médecins
 $list11 = $database->query("select docname,docemail from doctor;");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +46,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
     <link rel="stylesheet" href="../css/animations.css">      
     <link rel="stylesheet" href="../css/main.css">      
     <link rel="stylesheet" href="../css/admin.css">
-    <title>Dashboard</title>
+    <title>Tableau de bord</title>
     <style>
         .dashbord-tables{
             animation: transitionIn-Y-over 0.5s;
@@ -77,7 +77,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <a href="../logout.php" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+                                    <a href="../logout.php" ><input type="button" value="Se déconnecter" class="logout-btn btn-primary-soft btn"></a>
                                 </td>
                             </tr>
                         </table>
@@ -85,27 +85,27 @@ $list11 = $database->query("select docname,docemail from doctor;");
                 </tr>
                 <tr class="menu-row" >
                     <td class="menu-btn menu-icon-home menu-active menu-icon-home-active" >
-                        <a href="index.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Home</p></a></div></a>
+                        <a href="index.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Accueil</p></a></div></a>
                     </td>
                 </tr>
                 <tr class="menu-row">
                     <td class="menu-btn menu-icon-doctor">
-                        <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></a></div>
+                        <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">Tous les médecins</p></a></div>
                     </td>
                 </tr>
                 <tr class="menu-row" >
                     <td class="menu-btn menu-icon-session">
-                        <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Scheduled Sessions</p></div></a>
+                        <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Séances programmées</p></div></a>
                     </td>
                 </tr>
                 <tr class="menu-row" >
                     <td class="menu-btn menu-icon-appoinment">
-                        <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">My Bookings</p></a></div>
+                        <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Mes réservations</p></a></div>
                     </td>
                 </tr>
                 <tr class="menu-row" >
                     <td class="menu-btn menu-icon-settings">
-                        <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Settings</p></a></div>
+                        <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Paramètres</p></a></div>
                     </td>
                 </tr>
             </table>
@@ -114,18 +114,15 @@ $list11 = $database->query("select docname,docemail from doctor;");
             <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;" >
                 <tr>
                     <td colspan="1" class="nav-bar" >
-                        <p style="font-size: 23px;padding-left:12px;font-weight: 600;margin-left:20px;">Home</p>
+                        <p style="font-size: 23px;padding-left:12px;font-weight: 600;margin-left:20px;">Accueil</p>
                     </td>
-                    <td width="25%">
-                    </td>
+                    <td width="25%"></td>
                     <td width="15%">
                         <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
-                            Today's Date
+                            Date du jour
                         </p>
                         <p class="heading-sub12" style="padding: 0;margin: 0;">
-                            <?php 
-                            echo $today;
-                            ?>
+                            <?php echo $today; ?>
                         </p>
                     </td>
                     <td width="10%">
@@ -138,16 +135,16 @@ $list11 = $database->query("select docname,docemail from doctor;");
                             <table class="filter-container doctor-header patient-header" style="border: none;width:95%" border="0" >
                                 <tr>
                                     <td >
-                                        <h3>Welcome!</h3>
+                                        <h3>Bienvenue !</h3>
                                         <h1><?php echo $username ?>.</h1>
-                                        <p>Haven't any idea about doctors? no problem let's jumping to 
-                                            <a href="doctors.php" class="non-style-link"><b>"All Doctors"</b></a> section or 
-                                            <a href="schedule.php" class="non-style-link"><b>"Sessions"</b> </a><br>
-                                            Track your past and future appointments history.<br>Also find out the expected arrival time of your doctor or medical consultant.<br><br>
+                                        <p>Vous n’avez pas d’idée sur les médecins ? Pas de problème, consultez la section 
+                                            <a href="doctors.php" class="non-style-link"><b>"Tous les médecins"</b></a> ou 
+                                            <a href="schedule.php" class="non-style-link"><b>"Séances"</b></a>.<br>
+                                            Suivez l’historique de vos rendez-vous passés et futurs.<br>Découvrez également l’heure d’arrivée prévue de votre médecin ou consultant médical.<br><br>
                                         </p>
-                                        <h3>Channel a Doctor Here</h3>
+                                        <h3>Prendre rendez-vous avec un médecin ici</h3>
                                         <form action="schedule.php" method="post" style="display: flex">
-                                            <input type="search" name="search" class="input-text " placeholder="Search Doctor and We will Find The Session Available" list="doctors" style="width:45%;">&nbsp;&nbsp;
+                                            <input type="search" name="search" class="input-text " placeholder="Cherchez un médecin et nous trouverons les séances disponibles" list="doctors" style="width:45%;">&nbsp;&nbsp;
                                             <?php
                                                 echo '<datalist id="doctors">';
                                                 for ($y=0;$y<$list11->num_rows;$y++){
@@ -157,9 +154,8 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                                 };
                                                 echo ' </datalist>';
                                             ?>
-                                            <input type="Submit" value="Search" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
-                                            <br>
-                                            <br>
+                                            <input type="Submit" value="Rechercher" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
+                                            <br><br>
                                         </form>
                                     </td>
                                 </tr>
@@ -176,7 +172,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                         <table class="filter-container" style="border: none;" border="0">
                                             <tr>
                                                 <td colspan="4">
-                                                    <p style="font-size: 20px;font-weight:600;padding-left: 12px;">Status</p>
+                                                    <p style="font-size: 20px;font-weight:600;padding-left: 12px;">Statut</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -187,7 +183,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                                                 <?php echo $doctorrow_count->num_rows ?>
                                                             </div><br>
                                                             <div class="h3-dashboard">
-                                                                All Doctors &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                Tous les médecins &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             </div>
                                                         </div>
                                                         <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/doctors-hover.svg');"></div>
@@ -200,7 +196,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                                                 <?php echo $patientrow_count->num_rows ?>
                                                             </div><br>
                                                             <div class="h3-dashboard">
-                                                                All Patients &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                Tous les patients &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             </div>
                                                         </div>
                                                         <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/patients-hover.svg');"></div>
@@ -215,7 +211,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                                                 <?php echo $appointmentrow_count->num_rows ?>
                                                             </div><br>
                                                             <div class="h3-dashboard" >
-                                                                NewBooking &nbsp;&nbsp;
+                                                                Nouvelles réservations &nbsp;&nbsp;
                                                             </div>
                                                         </div>
                                                         <div class="btn-icon-back dashboard-icons" style="margin-left: 0px;background-image: url('../img/icons/book-hover.svg');"></div>
@@ -228,7 +224,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                                                 <?php echo $schedulerow_count->num_rows ?>
                                                             </div><br>
                                                             <div class="h3-dashboard" style="font-size: 15px">
-                                                                Today Sessions
+                                                                Séances aujourd'hui
                                                             </div>
                                                         </div>
                                                         <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/session-iceblue.svg');"></div>
@@ -239,23 +235,23 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                     </center>
                                 </td>
                                 <td>
-                                    <p style="font-size: 20px;font-weight:600;padding-left: 40px;" class="anime">Your Upcoming Booking</p>
+                                    <p style="font-size: 20px;font-weight:600;padding-left: 40px;" class="anime">Vos prochaines réservations</p>
                                     <center>
                                         <div class="abc scroll" style="height: 250px;padding: 0;margin: 0;">
                                             <table width="85%" class="sub-table scrolldown" border="0" >
                                                 <thead>
                                                     <tr>
                                                         <th class="table-headin">
-                                                            Appoint. Number
+                                                            Numéro de rendez-vous
                                                         </th>
                                                         <th class="table-headin">
-                                                            Session Title
+                                                            Titre de la séance
                                                         </th>
                                                         <th class="table-headin">
-                                                            Doctor
+                                                            Médecin
                                                         </th>
                                                         <th class="table-headin">
-                                                            Sheduled Date & Time
+                                                            Date et heure prévues
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -272,8 +268,8 @@ $list11 = $database->query("select docname,docemail from doctor;");
                                                             <center>
                                                             <img src="../img/notfound.svg" width="25%">
                                                             <br>
-                                                            <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Nothing to show here!</p>
-                                                            <a class="non-style-link" href="schedule.php"><button class="login-btn btn-primary-soft btn" style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Channel a Doctor &nbsp;</button>
+                                                            <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Rien à afficher ici !</p>
+                                                            <a class="non-style-link" href="schedule.php"><button class="login-btn btn-primary-soft btn" style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Prendre rendez-vous &nbsp;</button>
                                                             </a>
                                                             </center>
                                                             <br><br><br><br>
@@ -323,24 +319,24 @@ $list11 = $database->query("select docname,docemail from doctor;");
     <!-- CHATBOT WIDGET -->
     <div id="chat-widget" class="chat-widget hidden">
         <div class="chat-header">
-            <h4>🏥 EDOC AI Assistant</h4>
+            <h4>🏥 DOCTO LINK Assistant IA</h4>
             <button id="chat-close">×</button>
         </div>
         <div id="chat-messages" class="chat-messages">
             <div class="message ai-message">
-                Hello <?php echo $username; ?>! I'm your EDOC assistant. How can I help you today?
-                <br><small><em>Note: This is for informational purposes only. Always consult healthcare professionals for medical advice.</em></small>
+                Bonjour <?php echo $username; ?> ! Je suis votre assistant DOCTO LINK. Comment puis-je vous aider aujourd'hui ?
+                <br><small><em>Note : Ceci est uniquement à titre informatif. Consultez toujours un professionnel de santé pour des conseils médicaux.</em></small>
             </div>
         </div>
         <div class="chat-input">
-            <input type="text" id="chat-input" placeholder="Ask me anything..." />
-            <button id="chat-send">Send</button>
+            <input type="text" id="chat-input" placeholder="Posez-moi une question..." />
+            <button id="chat-send">Envoyer</button>
         </div>
     </div>
-    <button id="chat-toggle" class="chat-toggle">💬 AI Help</button>
+    <button id="chat-toggle" class="chat-toggle">💬 Aide IA</button>
 
     <style>
-    /* Simple Chatbot Styles */
+    /* Styles du chatbot */
     .chat-toggle {
         position: fixed;
         bottom: 20px;
@@ -419,7 +415,7 @@ $list11 = $database->query("select docname,docemail from doctor;");
         border-top: 1px solid #ddd;
         display: flex;
         gap: 10px;
-        align-items: center; /* Added to align input and button */
+        align-items: center;
     }
     #chat-input {
         flex: 1;
@@ -443,43 +439,44 @@ $list11 = $database->query("select docname,docemail from doctor;");
         background: #0056b3;
     }
     </style>
+
     <script>
-    // Simple Chatbot JavaScript
+    // JavaScript Chatbot en français
     let chatOpen = false;
     document.getElementById('chat-toggle').addEventListener('click', function() {
         const widget = document.getElementById('chat-widget');
         const button = this;
-                if (chatOpen) {
+        if (chatOpen) {
             widget.classList.add('hidden');
-            button.textContent = '💬 AI Help';
+            button.textContent = '💬 Aide IA';
             chatOpen = false;
         } else {
             widget.classList.remove('hidden');
-            button.textContent = '💬 Close';
+            button.textContent = '💬 Fermer';
             chatOpen = true;
             document.getElementById('chat-input').focus();
         }
     });
     document.getElementById('chat-close').addEventListener('click', function() {
         document.getElementById('chat-widget').classList.add('hidden');
-        document.getElementById('chat-toggle').textContent = '💬 AI Help';
+        document.getElementById('chat-toggle').textContent = '💬 Aide IA';
         chatOpen = false;
     });
-    document.getElementById('chat-send').addEventListener('click', sendMessage);
+    document.getElementById('chat-send').addEventListener('click', envoyerMessage);
     document.getElementById('chat-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-            sendMessage();
+            envoyerMessage();
         }
     });
-    function sendMessage() {
+
+    function envoyerMessage() {
         const input = document.getElementById('chat-input');
         const message = input.value.trim();
-                if (!message) return;
-                // Add user message
-        addMessage(message, 'user');
+        if (!message) return;
+
+        ajouterMessage(message, 'user');
         input.value = '';
-                // Simple AI response (using the local keyword-based logic)
-        // IMPORTANT: This now points to the local chat.php for keyword-based responses.
+
         fetch('../chatbot/chat.php', {
             method: 'POST',
             headers: {
@@ -490,21 +487,22 @@ $list11 = $database->query("select docname,docemail from doctor;");
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                addMessage(data.response, 'ai');
+                ajouterMessage(data.response, 'ai');
             } else {
-                addMessage('❌ Error: ' + (data.error || 'Unknown error from server.'), 'ai');
+                ajouterMessage('❌ Erreur : ' + (data.error || 'Erreur inconnue du serveur.'), 'ai');
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            addMessage('❌ Connection error. Please check your internet connection and try again.', 'ai');
+            console.error('Erreur :', error);
+            ajouterMessage('❌ Erreur de connexion. Vérifiez votre internet et réessayez.', 'ai');
         });
     }
-    function addMessage(text, sender) {
+
+    function ajouterMessage(text, sender) {
         const messagesDiv = document.getElementById('chat-messages');
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}-message`;
-        messageDiv.innerHTML = text; // Use innerHTML to allow for small tags in AI response
+        messageDiv.innerHTML = text;
         messagesDiv.appendChild(messageDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
