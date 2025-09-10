@@ -31,7 +31,7 @@ $openai_api_key = 'YOUR_OPENAI_API_KEY_HERE';
 $openai_url = 'https://api.openai.com/v1/chat/completions';
 
 // Define a simple, fixed system prompt for the AI
-$systemPrompt = "You are EDOC AI, a helpful medical assistant for the EDOC Medical Center. You can answer general medical questions, provide information about appointments, services, and navigate the EDOC system. Always advise users to consult healthcare professionals for specific medical advice. Be concise and helpful.";
+$systemPrompt = "You are DOCTO LINK AI, a helpful medical assistant for the DOCTO LINK Medical Center. You can answer general medical questions, provide information about appointments, services, and navigate the DOCTO LINK system. Always advise users to consult healthcare professionals for specific medical advice. Be concise and helpful.";
 
 // Prepare the data payload for the OpenAI API request
 $data = [

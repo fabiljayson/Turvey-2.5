@@ -1,81 +1,43 @@
+# Fonctionnalités
+# Administrateur
 
-# Open Source Doctor Appointment Booking System using PHP
-![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(1).png)
+- L’administrateur peut ajouter des médecins, modifier des médecins, supprimer des médecins
+- Programmer de nouvelles séances pour les médecins, supprimer des séances
+- Voir les détails des patients
+- Voir les réservations des patients
 
-[Edoc](https://github.com/HashenUdara/edoc-doctor-appointment-system/) is a Simple web project that is made for e-channeling Using PHP,HTML & CSS.
-This initiative facilitates online appointment requests for clients or patients of medical establishments, including clinics and hospitals. This project can also help doctors to manage their appointment with their patients. This doctor's appointment system will organize the schedules of each patient's appointment, which will be submitted as a request to the doctor they have selected. The system comprises three key roles: administrator, doctor, and patient. The system admin will populate the list of the doctors with their specialties and along with the doctor's details and system credentials. The patients can browse the doctor's appointment system website to find a doctor that has the specialty of their needs. Patients can review the doctor's weekly schedule, enabling them to select a suitable day and time for their appointment. Subsequently, they can submit their appointment request. After that, the doctors can view all their appointments and the appointment request of the patients for their availability.
+# Médecins
 
+- Voir leurs rendez-vous
+- Voir leurs séances programmées
+- Voir les détails des patients
+- Supprimer le compte
+- Modifier les paramètres du compte
 
-## Features
+# Patients (Clients)
 
-### Admin
-  
-- Admin can add doctors, edit doctors, delete doctors    
-- Schedule new doctors sessions, remove sessions   
-- View patients details    
-- View booking of patients    
-    
-    
- 
- 
-### Doctors
-
-- View their Appointment
-- View their scheduled sessions
-- View details of patients
-- Delete account    
-- Eedit account settings
-    
-
-    
-### Patiens(Clients)
-  
-  - Make appointment online
-  - Create accounts themslves
-  - View their old booking
-  - Delete account
-  - Edit account settings    
+- Prendre rendez-vous en ligne
+- Créer eux-mêmes un compte
+- Voir leurs anciennes réservations
+- Supprimer le compte
+- Modifier les paramètres du compte
 
     
 | Admin Dashboard | Doctor Dashboard | Patient Dashboard |
 | -------| -------| -------|
 | Email: `admin@edoc.com` | Email: `doctor@edoc.com` |   Email: `patient@edoc.com` | 
 | Password: `123` |  Password: `123` |  Password: `123` |
-| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(3).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(9).png) |    ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(6).png)  |
-
  
   
 -----------------------------------------------
 
 
-# GET STARTED
+# DÉMARRER
 
-1. Open your XAMPP Control Panel and start Apache and MySQL.
-2. Extract the downloaded source code zip file.
-3. Copy the extracted source code folder and paste it into the XAMPP's "htdocs" directory.
-4. Browse the PHPMyAdmin in a browser. i.e. http://localhost/phpmyadmin
-5. Create a new database naming `edoc`.
-6. Import the provided SQL file. The file is known as DATABASE edoc.sql located inside the source code root folder.
-7. Browse the Doctor's Appointment Systsem in a browser. i.e. http://localhost/edoc-echanneling-main/.
-
-
-## Screenshots
-
-| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(1).png) | ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(2).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(3).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(4).png)|
-|--------------| --------------|   --------------|  --------------|    
-|  ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(5).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(6).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(7).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(8).png)|
-
-# The Project was developed using the following:
-
-Apache Version: 	`2.4.39`
-
-PHP Version: 		`7.3.5`
-
-Server Software: 	`Apache/2.4.39 (Win64) PHP/7.3.5`
-
-MySQL Version: 		`5.7.26`
-
-Demo video: https://youtu.be/mAWHYAHmit4
-
-
-
+Ouvrez votre panneau de contrôle XAMPP et démarrez Apache et MySQL.
+Extrayez le fichier zip du code source téléchargé.
+Copiez le dossier du code source extrait et collez-le dans le répertoire "htdocs" de XAMPP.
+Ouvrez PHPMyAdmin dans un navigateur, par exemple : http://localhost/phpmyadmin
+Créez une nouvelle base de données nommée edoc.
+Importez le fichier SQL fourni. Le fichier s’appelle edoc.sql et se trouve dans le dossier racine du code source.
+Parcourez le système de rendez-vous des médecins dans un navigateur, par exemple : http://localhost/edoc-echanneling-main/

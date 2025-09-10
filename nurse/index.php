@@ -1,9 +1,9 @@
 <?php
-// Put ALL PHP code at the TOP - this fixes session errors
+// Mettre tout le code PHP en haut - cela corrige les erreurs de session
 session_start();
 
 if (isset($_SESSION["user"])) {
-    if ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'n') { // Ensure this checks for 'n' for nurse
+    if ($_SESSION["user"] == "" || $_SESSION['usertype'] != 'n') { // Vérifie que l'utilisateur est une infirmière
         header("location: ../login.php");
         exit();
     } else {
@@ -16,7 +16,7 @@ if (isset($_SESSION["user"])) {
 
 include("../connection.php");
 
-// Fetch nurse details
+// Récupérer les détails de l'infirmière
 $sqlmain = "SELECT * FROM nurse WHERE nemail=?";
 $stmt = $database->prepare($sqlmain);
 $stmt->bind_param("s", $useremail);
@@ -26,14 +26,13 @@ $userfetch = $result->fetch_assoc();
 $userid = $userfetch["nid"];
 $username = $userfetch["nname"];
 
-$selecttype = "All";
-$current = "All Patients";
+$selecttype = "Tout";
+$current = "Tous les patients";
 $sqlmain = "SELECT * FROM patient";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
     $keyword = $_POST["search12"];
-    // Sanitize keyword for SQL LIKE clause
-    $keyword = $database->real_escape_string($keyword);
+    $keyword = $database->real_escape_string($keyword); // Sécuriser pour SQL LIKE
     $sqlmain = "SELECT * FROM patient WHERE
                 pemail LIKE '%$keyword%' OR
                 pname LIKE '%$keyword%' OR
@@ -41,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,13 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
     <link rel="stylesheet" href="../css/animations.css">      
     <link rel="stylesheet" href="../css/main.css">      
     <link rel="stylesheet" href="../css/admin.css">
-    <title>Nurse Dashboard</title>
+    <title>Tableau de bord Infirmière</title>
     <style>
         .sub-table, .filter-container, .dash-body {
             animation: transitionIn-Y-bottom 0.5s;
         }
 
-        /* Chatbot Styles */
+        /* Styles du Chatbot */
         .chat-toggle {
             position: fixed;
             bottom: 20px;
@@ -134,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
             border-top: 1px solid #ddd;
             display: flex;
             gap: 10px;
-            align-items: center; /* Added to align input and button */
+            align-items: center;
         }
         #chat-input {
             flex: 1;
@@ -177,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="../logout.php"><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+                                <a href="../logout.php"><input type="button" value="Se déconnecter" class="logout-btn btn-primary-soft btn"></a>
                             </td>
                         </tr>
                     </table>
@@ -185,12 +184,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-dashbord">
-                    <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Dashboard</p></div></a>
+                    <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Tableau de bord</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-appoinment">
-                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Appointments</p></div></a>
+                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Rendez-vous</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
@@ -208,12 +207,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
                         <table class="filter-container" style="border: none;width:95%" border="0">
                             <tr>
                                 <td>
-                                    <h3>Welcome Nurse</h3>
+                                    <h3>Bienvenue Infirmière</h3>
                                     <h1><?php echo $username; ?>.</h1>
-                                    <p>You can view, search, and monitor all patients and appointments assigned today.</p>
+                                    <p>Vous pouvez visualiser, rechercher et suivre tous les patients et rendez-vous assignés aujourd'hui.</p>
                                     <form method="POST">
-                                        <input type="search" name="search12" placeholder="Search patient name/email/NIC" class="input-text header-searchbar">
-                                        <input type="submit" name="search" value="Search" class="btn-primary btn">
+                                        <input type="search" name="search12" placeholder="Rechercher par nom/email/NIC du patient" class="input-text header-searchbar">
+                                        <input type="submit" name="search" value="Rechercher" class="btn-primary btn">
                                     </form>
                                 </td>
                             </tr>
@@ -228,19 +227,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
                             <table width="93%" class="sub-table scrolldown" style="border-spacing:0;">
                                 <thead>
                                     <tr>
-                                        <th class="table-headin">Name</th>
+                                        <th class="table-headin">Nom</th>
                                         <th class="table-headin">NIC</th>
-                                        <th class="table-headin">Phone</th>
+                                        <th class="table-headin">Téléphone</th>
                                         <th class="table-headin">Email</th>
-                                        <th class="table-headin">DOB</th>
-                                        <th class="table-headin">Address</th>
+                                        <th class="table-headin">Date de naissance</th>
+                                        <th class="table-headin">Adresse</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $result = $database->query($sqlmain);
                                     if ($result->num_rows == 0) {
-                                        echo "<tr><td colspan='6'><center><br><img src='../img/notfound.svg' width='25%'><br><p class='heading-main12'>No patients found.</p></center></td></tr>";
+                                        echo "<tr><td colspan='6'><center><br><img src='../img/notfound.svg' width='25%'><br><p class='heading-main12'>Aucun patient trouvé.</p></center></td></tr>";
                                     } else {
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>
@@ -267,42 +266,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["search"])) {
 <!-- CHATBOT WIDGET -->
 <div id="chat-widget" class="chat-widget hidden">
     <div class="chat-header">
-        <h4>🏥 EDOC AI Assistant</h4>
+        <h4>🏥 Assistant IA DOCTOLINK</h4>
         <button id="chat-close">×</button>
     </div>
     <div id="chat-messages" class="chat-messages">
         <div class="message ai-message">
-            Hello Nurse <?php echo $username; ?>! I'm your EDOC assistant. How can I help you today?
-            <br><small><em>Note: This is for informational purposes only. Always consult healthcare professionals for medical advice.</em></small>
+            Bonjour Infirmière <?php echo $username; ?> ! Je suis votre assistant DOCTOLINK. Comment puis-je vous aider aujourd'hui ?
+            <br><small><em>Note : Ceci est à titre informatif uniquement. Consultez toujours des professionnels de santé pour des conseils médicaux.</em></small>
         </div>
     </div>
     <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="Ask me anything..." />
-        <button id="chat-send">Send</button>
+        <input type="text" id="chat-input" placeholder="Posez-moi une question..." />
+        <button id="chat-send">Envoyer</button>
     </div>
 </div>
-<button id="chat-toggle" class="chat-toggle">💬 AI Help</button>
+<button id="chat-toggle" class="chat-toggle">💬 Aide IA</button>
 
 <script>
-// Simple Chatbot JavaScript
+// JavaScript du Chatbot
 let chatOpen = false;
 document.getElementById('chat-toggle').addEventListener('click', function() {
     const widget = document.getElementById('chat-widget');
     const button = this;
     if (chatOpen) {
         widget.classList.add('hidden');
-        button.textContent = '💬 AI Help';
+        button.textContent = '💬 Aide IA';
         chatOpen = false;
     } else {
         widget.classList.remove('hidden');
-        button.textContent = '💬 Close';
+        button.textContent = '💬 Fermer';
         chatOpen = true;
         document.getElementById('chat-input').focus();
     }
 });
 document.getElementById('chat-close').addEventListener('click', function() {
     document.getElementById('chat-widget').classList.add('hidden');
-    document.getElementById('chat-toggle').textContent = '💬 AI Help';
+    document.getElementById('chat-toggle').textContent = '💬 Aide IA';
     chatOpen = false;
 });
 document.getElementById('chat-send').addEventListener('click', sendMessage);
@@ -315,16 +314,11 @@ function sendMessage() {
     const input = document.getElementById('chat-input');
     const message = input.value.trim();
     if (!message) return;
-    // Add user message
     addMessage(message, 'user');
     input.value = '';
-    // Simple AI response (using the local keyword-based logic)
-    // IMPORTANT: This now points to the local chat.php for keyword-based responses.
-    fetch('../chatbot/chat.php', { // Adjusted path for nurse/index.php
+    fetch('../chatbot/chat.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: message }),
     })
     .then(response => response.json())
@@ -332,19 +326,19 @@ function sendMessage() {
         if (data.success) {
             addMessage(data.response, 'ai');
         } else {
-            addMessage('❌ Error: ' + (data.error || 'Unknown error from server.'), 'ai');
+            addMessage('❌ Erreur : ' + (data.error || 'Erreur inconnue du serveur.'), 'ai');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        addMessage('❌ Connection error. Please check your internet connection and try again.', 'ai');
+        console.error('Erreur:', error);
+        addMessage('❌ Erreur de connexion. Vérifiez votre connexion internet et réessayez.', 'ai');
     });
 }
 function addMessage(text, sender) {
     const messagesDiv = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
-    messageDiv.innerHTML = text; // Use innerHTML to allow for small tags in AI response
+    messageDiv.innerHTML = text;
     messagesDiv.appendChild(messageDiv);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
