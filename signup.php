@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/animations.css">  
 <link rel="stylesheet" href="css/main.css">  
 <link rel="stylesheet" href="css/signup.css">
-<title>Inscription</title>
+<title>Sign Up</title>
 </head>
 <body>
 <?php
@@ -16,7 +16,7 @@ session_start();
 $_SESSION["user"] = "";
 $_SESSION["usertype"] = "";
 
-// Définir le fuseau horaire
+// Set timezone
 date_default_timezone_set('Africa/Douala');
 $date = date('Y-m-d');
 $_SESSION["date"] = $date;
@@ -40,47 +40,47 @@ if($_POST){
     <table border="0">
         <tr>
             <td colspan="2">
-                <p class="header-text">Commençons !</p>
-                <p class="sub-text">Ajoutez vos informations personnelles pour continuer</p>
+                <p class="header-text">Let's get started!</p>
+                <p class="sub-text">Add your personal information to continue</p>
             </td>
         </tr>
         <tr>
             <form action="" method="POST">
             <td class="label-td" colspan="2">
-                <label for="name" class="form-label">Nom : </label>
+                <label for="name" class="form-label">First Name: </label>
             </td>
         </tr>
         <tr>
             <td class="label-td">
-                <input type="text" name="fname" class="input-text" placeholder="Prénom" required>
+                <input type="text" name="fname" class="input-text" placeholder="First Name" required>
             </td>
             <td class="label-td">
-                <input type="text" name="lname" class="input-text" placeholder="Nom de famille" required>
+                <input type="text" name="lname" class="input-text" placeholder="Last Name" required>
             </td>
         </tr>
         <tr>
             <td class="label-td" colspan="2">
-                <label for="address" class="form-label">Adresse : </label>
+                <label for="address" class="form-label">Address: </label>
             </td>
         </tr>
         <tr>
             <td class="label-td" colspan="2">
-                <input type="text" name="address" class="input-text" placeholder="Adresse" required>
+                <input type="text" name="address" class="input-text" placeholder="Address" required>
             </td>
         </tr>
         <tr>
             <td class="label-td" colspan="2">
-                <label for="nic" class="form-label">Numéro d'identité : </label>
+                <label for="nic" class="form-label">Identity Number: </label>
             </td>
         </tr>
         <tr>
             <td class="label-td" colspan="2">
-                <input type="text" name="nic" class="input-text" placeholder="Numéro d'identité" required>
+                <input type="text" name="nic" class="input-text" placeholder="Identity Number" required>
             </td>
         </tr>
         <tr>
             <td class="label-td" colspan="2">
-                <label for="dob" class="form-label">Date de naissance : </label>
+                <label for="dob" class="form-label">Date of Birth: </label>
             </td>
         </tr>
         <tr>
@@ -95,19 +95,19 @@ if($_POST){
 
         <tr>
             <td>
-                <input type="reset" value="Réinitialiser" class="login-btn btn-primary-soft btn">
+                <input type="reset" value="Reset" class="login-btn btn-primary-soft btn">
             </td>
             <td>
-                <input type="submit" value="Suivant" class="login-btn btn-primary btn">
+                <input type="submit" value="Next" class="login-btn btn-primary btn">
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <br>
-                <label for="" class="sub-text" style="font-weight: 280;">Vous avez déjà un compte ? </label>
-                <a href="login.php" class="hover-link1 non-style-link">Connexion</a>
+                <label for="" class="sub-text" style="font-weight: 280;">Already have an account? </label>
+                <a href="login.php" class="hover-link1 non-style-link">Login</a>
                 <br><br><br>
-                <a href="index.html" class="hover-link1 non-style-link">Retour à l'accueil</a>
+                <a href="index.html" class="hover-link1 non-style-link">Back to Home</a>
                 <br><br><br>
             </td>
         </tr>

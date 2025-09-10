@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/animations.css">  
 <link rel="stylesheet" href="css/main.css">  
 <link rel="stylesheet" href="css/login.css">
-<title>Connexion</title>
+<title>Login</title>
 </head>
 <body>
 <?php
@@ -16,12 +16,12 @@ session_start();
 $_SESSION["user"] = "";
 $_SESSION["usertype"] = "";
 
-// Définir le fuseau horaire
+// Set timezone
 date_default_timezone_set('Africa/Douala');
 $date = date('Y-m-d');
 $_SESSION["date"] = $date;
 
-// Importer la base de données
+// Import database
 include("connection.php");
 
 if($_POST){
@@ -41,7 +41,7 @@ if($_POST){
                 $_SESSION['usertype'] = 'p';
                 header('location: patient/index.php');
             } else {
-                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Identifiants incorrects : email ou mot de passe invalide</label>';
+                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Invalid credentials: invalid email or password</label>';
             }
         } elseif($utype == 'a'){
             $checker = $database->query("SELECT * FROM admin WHERE aemail='$email' AND apassword='$password'");
@@ -50,7 +50,7 @@ if($_POST){
                 $_SESSION['usertype'] = 'a';
                 header('location: admin/index.php');
             } else {
-                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Identifiants incorrects : email ou mot de passe invalide</label>';
+                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Invalid credentials: invalid email or password</label>';
             }
         } elseif($utype == 'd'){
             $checker = $database->query("SELECT * FROM doctor WHERE docemail='$email' AND docpassword='$password'");
@@ -59,11 +59,11 @@ if($_POST){
                 $_SESSION['usertype'] = 'd';
                 header('location: doctor/index.php');
             } else {
-                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Identifiants incorrects : email ou mot de passe invalide</label>';
+                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Invalid credentials: invalid email or password</label>';
             }
         }
     } else {
-        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Aucun compte trouvé pour cet email.</label>';
+        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">No account found for this email.</label>';
     }
 
 } else {
@@ -76,34 +76,34 @@ if($_POST){
     <table border="0" style="margin: 0; padding: 0; width: 60%;">
         <tr>
             <td>
-                <p class="header-text">Bienvenue !</p>
+                <p class="header-text">Welcome!</p>
             </td>
         </tr>
     <div class="form-body">
         <tr>
             <td>
-                <p class="sub-text">Connectez-vous avec vos informations pour continuer</p>
+                <p class="sub-text">Log in with your details to continue</p>
             </td>
         </tr>
         <tr>
             <form action="" method="POST">
             <td class="label-td">
-                <label for="useremail" class="form-label">Email : </label>
+                <label for="useremail" class="form-label">Email: </label>
             </td>
         </tr>
         <tr>
             <td class="label-td">
-                <input type="email" name="useremail" class="input-text" placeholder="Adresse email" required>
+                <input type="email" name="useremail" class="input-text" placeholder="Email address" required>
             </td>
         </tr>
         <tr>
             <td class="label-td">
-                <label for="userpassword" class="form-label">Mot de passe : </label>
+                <label for="userpassword" class="form-label">Password: </label>
             </td>
         </tr>
         <tr>
             <td class="label-td">
-                <input type="password" name="userpassword" class="input-text" placeholder="Mot de passe" required>
+                <input type="password" name="userpassword" class="input-text" placeholder="Password" required>
             </td>
         </tr>
         <tr>
@@ -113,17 +113,17 @@ if($_POST){
         </tr>
         <tr>
             <td>
-                <input type="submit" value="SE CONNECTER" class="login-btn btn-primary btn">
+                <input type="submit" value="LOG IN" class="login-btn btn-primary btn">
             </td>
         </tr>
     </div>
         <tr>
             <td>
                 <br>
-                <label for="" class="sub-text" style="font-weight: 280;">Vous n'avez pas de compte ? </label>
-                <a href="signup.php" class="hover-link1 non-style-link">S'inscrire</a>
+                <label for="" class="sub-text" style="font-weight: 280;">Don't have an account? </label>
+                <a href="signup.php" class="hover-link1 non-style-link">Sign up</a>
                 <br><br><br>
-                <a href="index.html" class="hover-link1 non-style-link">Retour à l'accueil</a>
+                <a href="index.html" class="hover-link1 non-style-link">Back to Home</a>
                 <br><br><br>
             </td>
         </tr>            

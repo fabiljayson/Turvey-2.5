@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
-    <title>Rendez-vous</title>
+    <title>Appointment</title>
     <style>
         .popup{
             animation: transitionIn-Y-bottom 0.5s;
@@ -107,7 +107,7 @@ if(isset($_SESSION["user"])){
     header("location: ../login.php");
 }
 
-// Connexion à la base de données
+// Connection to the database
 include("../connection.php");
 $sqlmain= "select * from patient where pemail=?";
 $stmt = $database->prepare($sqlmain);
@@ -118,7 +118,7 @@ $userfetch=$userrow->fetch_assoc();
 $userid= $userfetch["pid"];
 $username=$userfetch["pname"];
 
-// Récupération des rendez-vous
+// Retrieval of appointments
 $sqlmain= "select appointment.appoid,schedule.scheduleid,schedule.title,doctor.docname,patient.pname,schedule.scheduledate,schedule.scheduletime,appointment.apponum,appointment.appodate from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  patient.pid=$userid ";
 
 if($_POST){
@@ -148,7 +148,7 @@ $result= $database->query($sqlmain);
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="../logout.php" ><input type="button" value="Déconnexion" class="logout-btn btn-primary-soft btn"></a>
+                                <a href="../logout.php" ><input type="button" value="Logout" class="logout-btn btn-primary-soft btn"></a>
                             </td>
                         </tr>
                     </table>
@@ -156,27 +156,27 @@ $result= $database->query($sqlmain);
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-home" >
-                    <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Accueil</p></a></div></a>
+                    <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Home</p></a></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-doctor">
-                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">Tous les médecins</p></a></div>
+                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></a></div>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-session">
-                    <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Sessions planifiées</p></div></a>
+                    <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Scheduled Sessions</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-appoinment  menu-active menu-icon-appoinment-active">
-                    <a href="appointment.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Mes réservations</p></a></div>
+                    <a href="appointment.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">My Bookings</p></a></div>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-settings">
-                    <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Paramètres</p></a></div>
+                    <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Settings</p></a></div>
                 </td>
             </tr>
         </table>
@@ -185,14 +185,14 @@ $result= $database->query($sqlmain);
         <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;margin-top:25px; ">
             <tr >
                 <td width="13%" >
-                    <a href="appointment.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Retour</font></button></a>
+<button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button>
                 </td>
                 <td>
-                    <p style="font-size: 23px;padding-left:12px;font-weight: 600;">Historique de mes réservations</p>
+<p style="font-size: 23px;padding-left:12px;font-weight: 600;">My Booking History</p>
                 </td>
                 <td width="15%">
                     <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
-                        Date d'aujourd'hui
+                        Today's Date
                     </p>
                     <p class="heading-sub12" style="padding: 0;margin: 0;">
                         <?php 
@@ -208,7 +208,7 @@ $result= $database->query($sqlmain);
             </tr>
             <tr>
                 <td colspan="4" style="padding-top:10px;width: 100%;" >
-                    <p class="heading-main12" style="margin-left: 45px;font-size:18px;color:rgb(49, 49, 49)">Mes réservations (<?php echo $result->num_rows; ?>)</p>
+                    <p class="heading-main12" style="margin-left: 45px;font-size:18px;color:rgb(49, 49, 49)">My Bookings (<?php echo $result->num_rows; ?>)</p>
                 </td>
             </tr>
             <tr>
@@ -223,7 +223,7 @@ $result= $database->query($sqlmain);
                                         <input type="date" name="sheduledate" id="date" class="input-text filter-container-items" style="margin: 0;width: 95%;">
                                 </td>
                                 <td width="12%">
-                                    <input type="submit"  name="filter" value=" Filtrer" class=" btn-primary-soft btn button-icon btn-filter"  style="padding: 15px; margin :0;width:100%">
+                                    <input type="submit"  name="filter" value=" Filter" class=" btn-primary-soft btn button-icon btn-filter"  style="padding: 15px; margin :0;width:100%">
                                     </form>
                                 </td>
                             </tr>
@@ -236,8 +236,8 @@ $result= $database->query($sqlmain);
             <tr>
                 <td colspan="4">
                     <div class="call-button-container">
-                        <button class="call-button" onclick="openVideoCall()">
-                            <i class="fas fa-video"></i> Démarrer l'appel vidéo
+                            <button class="call-button" onclick="openVideoCall()">
+                            <i class="fas fa-video"></i> Start Video Call
                         </button>
                     </div>
                 </td>
@@ -257,8 +257,8 @@ $result= $database->query($sqlmain);
                                     <center>
                                     <img src="../img/notfound.svg" width="25%">
                                     <br>
-                                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Aucun résultat correspondant à vos critères !</p>
-                                    <a class="non-style-link" href="appointment.php"><button  class="login-btn btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Voir tous les rendez-vous &nbsp;</font></button></a>
+                                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">No results matching your criteria!</p>
+                                    <a class="non-style-link" href="appointment.php"><button  class="login-btn btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; View All Appointments &nbsp;</font></button></a>
                                     </center>
                                     <br><br><br><br>
                                     </td>
@@ -285,23 +285,23 @@ $result= $database->query($sqlmain);
                                                 <div  class="dashboard-items search-items"  >
                                                     <div style="width:100%;">
                                                         <div class="h3-search">
-                                                            Date de réservation: '.substr($appodate,0,30).'<br>
-                                                            Numéro de référence: OC-000-'.$appoid.'
+                                                            Booking Date: '.substr($appodate,0,30).'<br>
+                                                            Reference Number: OC-000-'.$appoid.'
                                                         </div>
                                                         <div class="h1-search">
                                                             '.substr($title,0,21).'<br>
                                                         </div>
                                                         <div class="h3-search">
-                                                            Numéro de rendez-vous:<div class="h1-search">0'.$apponum.'</div>
+                                                            Appointment Number:<div class="h1-search">0'.$apponum.'</div>
                                                         </div>
                                                         <div class="h3-search">
                                                             '.substr($docname,0,30).'
                                                         </div>
                                                         <div class="h4-search">
-                                                            Date prévue: '.$scheduledate.'<br>Heure de début: <b>@'.substr($scheduletime,0,5).'</b> (24h)
+                                                            Scheduled Date: '.$scheduledate.'<br>Start Time: <b>@'.substr($scheduletime,0,5).'</b> (24h)
                                                         </div>
                                                         <br>
-                                                        <a href="?action=drop&id='.$appoid.'&title='.$title.'&doc='.$docname.'" ><button  class="login-btn btn-primary-soft btn "  style="padding-top:11px;padding-bottom:11px;width:100%"><font class="tn-in-text">Annuler la réservation</font></button></a>
+<a href="?action=drop&id='.$appoid.'&title='.htmlspecialchars($title).'&doc='.htmlspecialchars($docname).'" ><button  class="login-btn btn-primary-soft btn "  style="padding-top:11px;padding-bottom:11px;width:100%"><font class="tn-in-text">Cancel Booking</font></button></a>
                                                     </div>
                                                 </div>
                                             </td>';
@@ -321,9 +321,9 @@ $result= $database->query($sqlmain);
         <!-- MiroTalk Full Screen Video Conference -->
         <div id="mirotalk-fullscreen" class="mirotalk-fullscreen">
             <div class="mirotalk-header">
-                <div class="mirotalk-title">Appel Vidéo en Cours</div>
+                <div class="mirotalk-title">Video Call in Progress</div>
                 <button class="close-call" onclick="closeVideoCall()">
-                    <i class="fas fa-times"></i> Terminer l'appel
+                    <i class="fas fa-times"></i> End Call
                 </button>
             </div>
             <iframe 
@@ -347,10 +347,10 @@ if($_GET){
             <div class="popup">
                 <center>
                     <br><br>
-                    <h2>Réservation réussie.</h2>
+                    <h2>Booking Successful.</h2>
                     <a class="close" href="appointment.php">&times;</a>
                     <div class="content">
-                        Votre numéro de rendez-vous est '.$id.'.<br><br>
+                        Your appointment number is '.$id.'.<br><br>
                     </div>
                     <div style="display: flex;justify-content: center;">
                         <a href="appointment.php" class="non-style-link"><button  class="btn-primary btn" style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">&nbsp;&nbsp;OK&nbsp;&nbsp;</font></button></a>
@@ -365,18 +365,18 @@ if($_GET){
         echo '
         <div id="popup1" class="overlay">
             <div class="popup">
-                <center>
-                    <h2>Êtes-vous sûr ?</h2>
-                    <a class="close" href="appointment.php">&times;</a>
-                    <div class="content">
-                        Voulez-vous annuler ce rendez-vous ?<br><br>
-                        Nom de la session: &nbsp;<b>'.substr($title,0,40).'</b><br>
-                        Nom du médecin&nbsp; : <b>'.substr($docname,0,40).'</b><br><br>
-                    </div>
-                    <div style="display: flex;justify-content: center;">
-                        <a href="delete-appointment.php?id='.$id.'" class="non-style-link"><button  class="btn-primary btn" style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"<font class="tn-in-text">&nbsp;Oui&nbsp;</font></button></a>&nbsp;&nbsp;&nbsp;
-                        <a href="appointment.php" class="non-style-link"><button  class="btn-primary btn" style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">&nbsp;&nbsp;Non&nbsp;&nbsp;</font></button></a>
-                    </div>
+                    <center>
+<h2>Are you sure?</h2>
+<a class="close" href="appointment.php">&times;</a>
+<div class="content">
+    Do you want to cancel this appointment?<br><br>
+    Session Name: &nbsp;<b>'.htmlspecialchars(substr($title,0,40)).'</b><br>
+    Doctor\'s Name&nbsp; : <b>'.htmlspecialchars(substr($docname,0,40)).'</b><br><br>
+</div>
+<div style="display: flex;justify-content: center;">
+    <a href="delete-appointment.php?id='.$id.'" class="non-style-link"><button  class="btn-primary btn" style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">&nbsp;Yes&nbsp;</font></button></a>&nbsp;&nbsp;&nbsp;
+    <a href="appointment.php" class="non-style-link"><button  class="btn-primary btn" style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">&nbsp;&nbsp;No&nbsp;&nbsp;</font></button></a>
+</div>
                 </center>
             </div>
         </div>';
@@ -384,7 +384,7 @@ if($_GET){
 }
 ?>
 
-<!-- Notifications dynamiques -->
+// Dynamic Notifications
 <div id="notifications" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
 <script>
 function fetchNotifications(){
@@ -406,13 +406,15 @@ function fetchNotifications(){
 fetchNotifications();
 setInterval(fetchNotifications, 60000);
 
+var username = <?php echo json_encode($username); ?>;
+
 // MiroTalk Video Call Functions
 function openVideoCall() {
     const fullscreenDiv = document.getElementById('mirotalk-fullscreen');
     const iframe = document.getElementById('mirotalk-frame');
     
-    // Set the iframe source to the direct join URL
-    iframe.src = 'https://c2c.mirotalk.com/join?room=consultation&name=<?php echo $username; ?>';
+    // Set the iframe source to the direct join URL using the username variable
+    iframe.src = 'https://c2c.mirotalk.com/join?room=consultation&name=' + encodeURIComponent(username);
     
     // Show the fullscreen container
     fullscreenDiv.style.display = 'block';
@@ -434,7 +436,6 @@ function closeVideoCall() {
     // Re-enable scrolling on the background page
     document.body.style.overflow = 'auto';
 }
-
 // Close the video call when pressing the Escape key
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {

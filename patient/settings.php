@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/animations.css">  
-    <link rel="stylesheet" href="../css/main.css">  
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
-    <title>Paramètres</title>
+    <title>Settings</title>
     <style>
         .dashbord-tables{
             animation: transitionIn-Y-over 0.5s;
@@ -62,7 +62,7 @@ $username=$userfetch["pname"];
                         </tr>
                         <tr>
                             <td colspan="2">
-                            <a href="../logout.php" ><input type="button" value="Se déconnecter" class="logout-btn btn-primary-soft btn"></a>
+                            <a href="../logout.php" ><input type="button" value="Logout" class="logout-btn btn-primary-soft btn"></a>
                             </td>
                         </tr>
                 </table>
@@ -70,27 +70,27 @@ $username=$userfetch["pname"];
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-home " >
-                    <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Accueil</p></div></a>
+                    <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Home</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-doctor">
-                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">Tous les médecins</p></div></a>
+                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-session">
-                    <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Sessions programmées</p></div></a>
+                    <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Scheduled Sessions</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-appoinment">
-                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Mes réservations</p></div></a>
+                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">My Bookings</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-settings  menu-active menu-icon-settings-active">
-                    <a href="settings.php" class="non-style-link-menu  non-style-link-menu-active"><div><p class="menu-text">Paramètres</p></div></a>
+                    <a href="settings.php" class="non-style-link-menu  non-style-link-menu-active"><div><p class="menu-text">Settings</p></div></a>
                 </td>
             </tr>
         </table>
@@ -99,14 +99,14 @@ $username=$userfetch["pname"];
         <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;" >
             <tr >
                 <td width="13%" >
-                    <a href="settings.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Retour</font></button></a>
+                    <a href="settings.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
                 </td>
                 <td>
-                    <p style="font-size: 23px;padding-left:12px;font-weight: 600;">Paramètres</p>
+                    <p style="font-size: 23px;padding-left:12px;font-weight: 600;">Settings</p>
                 </td>
                 <td width="15%">
                     <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
-                        Date d'aujourd'hui
+                        Today's Date
                     </p>
                     <p class="heading-sub12" style="padding: 0;margin: 0;">
                         <?php 
@@ -131,8 +131,8 @@ $username=$userfetch["pname"];
                                 <div  class="dashboard-items setting-tabs"  style="padding:20px;margin:auto;width:95%;display: flex">
                                     <div class="btn-icon-back dashboard-icons-setting" style="background-image: url('../img/icons/doctors-hover.svg');"></div>
                                     <div>
-                                        <div class="h1-dashboard">Paramètres du compte&nbsp;</div><br>
-                                        <div class="h3-dashboard" style="font-size: 15px;">Modifier les informations du compte et changer le mot de passe</div>
+                                        <div class="h1-dashboard">Account Settings&nbsp;</div><br>
+                                        <div class="h3-dashboard" style="font-size: 15px;">Edit account information and change password</div>
                                     </div>
                                 </div>
                                 </a>
@@ -145,8 +145,8 @@ $username=$userfetch["pname"];
                                 <div  class="dashboard-items setting-tabs"  style="padding:20px;margin:auto;width:95%;display: flex;">
                                     <div class="btn-icon-back dashboard-icons-setting " style="background-image: url('../img/icons/view-iceblue.svg');"></div>
                                     <div>
-                                        <div class="h1-dashboard">Voir les détails du compte</div><br>
-                                        <div class="h3-dashboard"  style="font-size: 15px;">Voir les informations personnelles de votre compte</div>
+                                        <div class="h1-dashboard">View Account Details</div><br>
+                                        <div class="h3-dashboard"  style="font-size: 15px;">View your account's personal information</div>
                                     </div>
                                 </div>
                                 </a>
@@ -159,8 +159,8 @@ $username=$userfetch["pname"];
                                 <div  class="dashboard-items setting-tabs"  style="padding:20px;margin:auto;width:95%;display: flex;">
                                     <div class="btn-icon-back dashboard-icons-setting" style="background-image: url('../img/icons/patients-hover.svg');"></div>
                                     <div>
-                                        <div class="h1-dashboard" style="color: #ff5050;">Supprimer le compte</div><br>
-                                        <div class="h3-dashboard"  style="font-size: 15px;">Supprimera définitivement votre compte</div>
+                                        <div class="h1-dashboard" style="color: #ff5050;">Delete Account</div><br>
+                                        <div class="h3-dashboard"  style="font-size: 15px;">Will permanently delete your account</div>
                                     </div>
                                 </div>
                                 </a>
@@ -184,14 +184,14 @@ if($_GET){
         <div id="popup1" class="overlay">
                 <div class="popup">
                 <center>
-                    <h2>Êtes-vous sûr ?</h2>
+                    <h2>Are you sure?</h2>
                     <a class="close" href="settings.php">&times;</a>
                     <div class="content">
-                        Vous voulez supprimer votre compte<br>('.substr($nameget,0,40).').
+                        You want to delete your account<br>('.substr($nameget,0,40).').
                     </div>
                     <div style="display: flex;justify-content: center;">
-                    <a href="delete-account.php?id='.$id.'" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Oui</button></a>&nbsp;&nbsp;&nbsp;
-                    <a href="settings.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Non</button></a>
+                    <a href="delete-account.php?id='.$id.'" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Yes</button></a>&nbsp;&nbsp;&nbsp;
+                    <a href="settings.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">No</button></a>
                     </div>
                 </center>
         </div>
@@ -222,12 +222,12 @@ if($_GET){
                     <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
                         <tr>
                             <td>
-                                <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Voir les détails.</p><br><br>
+                        <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">View Details.</p><br><br>
                             </td>
                         </tr>
                         <tr>
                             <td class="label-td" colspan="2">
-                                <label class="form-label">Nom: </label>
+                                <label class="form-label">Name: </label>
                                 '.$name.'<br><br>
                             </td>
                         </tr>
@@ -245,19 +245,19 @@ if($_GET){
                         </tr>
                         <tr>
                             <td class="label-td" colspan="2">
-                                <label class="form-label">Téléphone: </label>
+                                <label class="form-label">Phone: </label>
                                 '.$tele.'<br><br>
                             </td>
                         </tr>
                         <tr>
                             <td class="label-td" colspan="2">
-                                <label class="form-label">Adresse: </label>
+                                <label class="form-label">Address: </label>
                                 '.$address.'<br><br>
                             </td>
                         </tr>
                         <tr>
                             <td class="label-td" colspan="2">
-                                <label class="form-label">Date de naissance: </label>
+                                <label class="form-label">Date of Birth: </label>
                                 '.$dob.'<br><br>
                             </td>
                         </tr>
@@ -287,8 +287,8 @@ if($_GET){
         $tele=$row['ptel'];
         $error_1=$_GET["error"];
         $errorlist= array(
-            '1'=>'<label class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Un compte existe déjà pour cet e-mail.</label>',
-            '2'=>'<label class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Erreur de confirmation du mot de passe ! Reconfirmer le mot de passe</label>',
+            '1'=>'<label class="form-label" style="color:rgb(255, 62, 62);text-align:center;">An account already exists for this email.</label>',
+            '2'=>'<label class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password confirmation error! Reconfirm the password</label>',
             '3'=>'<label class="form-label" style="color:rgb(255, 62, 62);text-align:center;"></label>',
             '4'=>"",
             '0'=>'',
@@ -306,8 +306,8 @@ if($_GET){
                         </tr>
                         <tr>
                             <td>
-                                <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Modifier les détails du compte utilisateur.</p>
-                                ID Utilisateur : '.$id.' (Généré automatiquement)<br><br>
+                            <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Edit User Account Details.</p>
+                                User ID : '.$id.' (Auto-generated)<br><br>
                             </td>
                         </tr>
                         <form action="edit-user.php" method="POST" class="add-new-form">
@@ -315,35 +315,35 @@ if($_GET){
                             <label>Email: </label>
                             <input type="hidden" value="'.$id.'" name="id00">
                             <input type="hidden" name="oldemail" value="'.$email.'" >
-                            <input type="email" name="email" class="input-text" placeholder="Adresse e-mail" value="'.$email.'" required><br>
+                            <input type="email" name="email" class="input-text" placeholder="Email Address" value="'.$email.'" required><br>
                         </td></tr>
                         <tr><td class="label-td" colspan="2">
-                            <label>Nom: </label>
-                            <input type="text" name="name" class="input-text" placeholder="Nom" value="'.$name.'" required><br>
+                            <label>Name: </label>
+                            <input type="text" name="name" class="input-text" placeholder="Name" value="'.$name.'" required><br>
                         </td></tr>
                         <tr><td class="label-td" colspan="2">
                             <label>NIC: </label>
-                            <input type="text" name="nic" class="input-text" placeholder="Numéro NIC" value="'.$nic.'" required><br>
+                            <input type="text" name="nic" class="input-text" placeholder="NIC Number" value="'.$nic.'" required><br>
                         </td></tr>
                         <tr><td class="label-td" colspan="2">
-                            <label>Téléphone: </label>
-                            <input type="tel" name="Tele" class="input-text" placeholder="Numéro de téléphone" value="'.$tele.'" required><br>
+                            <label>Phone: </label>
+                            <input type="tel" name="Tele" class="input-text" placeholder="Phone Number" value="'.$tele.'" required><br>
                         </td></tr>
                         <tr><td class="label-td" colspan="2">
-                            <label>Adresse: </label>
-                            <input type="text" name="address" class="input-text" placeholder="Adresse" value="'.$address.'" required><br>
+                            <label>Address: </label>
+                            <input type="text" name="address" class="input-text" placeholder="Address" value="'.$address.'" required><br>
                         </td></tr>
                         <tr><td class="label-td" colspan="2">
-                            <label>Mot de passe: </label>
-                            <input type="password" name="password" class="input-text" placeholder="Définir un mot de passe" required><br>
+                            <label>Password: </label>
+                            <input type="password" name="password" class="input-text" placeholder="Set a password" required><br>
                         </td></tr>
                         <tr><td class="label-td" colspan="2">
-                            <label>Confirmer le mot de passe: </label>
-                            <input type="password" name="cpassword" class="input-text" placeholder="Confirmer le mot de passe" required><br>
+                            <label>Confirm Password: </label>
+                            <input type="password" name="cpassword" class="input-text" placeholder="Confirm password" required><br>
                         </td></tr>
                         <tr><td colspan="2">
-                            <input type="reset" value="Réinitialiser" class="login-btn btn-primary-soft btn" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" value="Enregistrer" class="login-btn btn-primary btn">
+                            <input type="reset" value="Reset" class="login-btn btn-primary-soft btn" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" value="Save" class="login-btn btn-primary btn">
                         </td></tr>
                         </form>
                     </table>
@@ -360,14 +360,14 @@ if($_GET){
             <div class="popup">
             <center>
                 <br><br><br><br>
-                <h2>Modification réussie !</h2>
+                <h2>Modification Successful!</h2>
                 <a class="close" href="settings.php">&times;</a>
                 <div class="content">
-                    Si vous changez également votre e-mail, veuillez vous déconnecter et vous reconnecter avec votre nouvel e-mail.
+                    If you also change your email, please log out and log in again with your new email.
                 </div>
                 <div style="display: flex;justify-content: center;">
                     <a href="settings.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">OK</button></a>
-                    <a href="../logout.php" class="non-style-link"><button  class="btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Se déconnecter</button></a>
+                    <a href="../logout.php" class="non-style-link"><button  class="btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Logout</button></a>
                 </div>
             </center>
             </div>
