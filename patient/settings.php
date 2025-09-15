@@ -62,7 +62,7 @@ $username=$userfetch["pname"];
                         </tr>
                         <tr>
                             <td colspan="2">
-                            <a href="../logout.php" ><input type="button" value="Logout" class="logout-btn btn-primary-soft btn"></a>
+                            <a href="../logout.php" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
                             </td>
                         </tr>
                 </table>
@@ -216,7 +216,7 @@ if($_GET){
                 <center>
                     <a class="close" href="settings.php">&times;</a>
                     <div class="content">
-                        DOCTO LINK Web App
+                        DOCTOLINK Web App
                     </div>
                     <div style="display: flex;justify-content: center;">
                     <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
@@ -367,7 +367,7 @@ if($_GET){
                 </div>
                 <div style="display: flex;justify-content: center;">
                     <a href="settings.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">OK</button></a>
-                    <a href="../logout.php" class="non-style-link"><button  class="btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Logout</button></a>
+                    <a href="../logout.php" class="non-style-link"><button  class="btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;">Log out</button></a>
                 </div>
             </center>
             </div>

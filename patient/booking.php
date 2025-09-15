@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/animations.css">  
-    <link rel="stylesheet" href="../css/main.css">  
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
-        
-    <title>Sessions</title>
+
+    <title>Booking</title>
     <style>
         .popup{
             animation: transitionIn-Y-bottom 0.5s;
@@ -32,7 +32,7 @@ if(isset($_SESSION["user"])){
     header("location: ../login.php");
 }
 
-// Connexion à la base de données
+// Connection to the database
 include("../connection.php");
 
 $sqlmain= "select * from patient where pemail=?";
@@ -64,7 +64,7 @@ $today = date('Y-m-d');
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="../logout.php" ><input type="button" value="Déconnexion" class="logout-btn btn-primary-soft btn"></a>
+                                <a href="../logout.php" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
                             </td>
                         </tr>
                     </table>
@@ -72,27 +72,27 @@ $today = date('Y-m-d');
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-home " >
-                    <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Accueil</p></div></a>
+                    <a href="index.php" class="non-style-link-menu "><div><p class="menu-text">Home</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-doctor">
-                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">Tous les médecins</p></div></a>
+                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-session menu-active menu-icon-session-active">
-                    <a href="schedule.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Sessions planifiées</p></div></a>
+                    <a href="schedule.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Scheduled Sessions</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-appoinment">
-                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Mes réservations</p></div></a>
+                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">My Bookings</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row" >
                 <td class="menu-btn menu-icon-settings">
-                    <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Paramètres</p></div></a>
+                    <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Settings</p></div></a>
                 </td>
             </tr>
         </table>
@@ -102,24 +102,24 @@ $today = date('Y-m-d');
         <table border="0" width="100%" style="border-spacing: 0;margin:0;padding:0;margin-top:25px;">
             <tr>
                 <td width="13%">
-                    <a href="schedule.php"><button class="login-btn btn-primary-soft btn btn-icon-back" style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Retour</font></button></a>
+                    <a href="schedule.php"><button class="login-btn btn-primary-soft btn btn-icon-back" style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
                 </td>
                 <td>
                     <form action="schedule.php" method="post" class="header-search">
-                        <input type="search" name="search" class="input-text header-searchbar" placeholder="Rechercher par nom de médecin, email ou date (AAAA-MM-JJ)" list="doctors">&nbsp;&nbsp;
+                        <input type="search" name="search" class="input-text header-searchbar" placeholder="Search by doctor name, email or date (YYYY-MM-DD)" list="doctors">&nbsp;&nbsp;
                         <?php
                         echo '<datalist id="doctors">';
                         $list11 = $database->query("select DISTINCT * from doctor;");
                         $list12 = $database->query("select DISTINCT * from schedule GROUP BY title;");
 
-                        // Noms de médecins
+                        // Doctor names
                         for ($y=0;$y<$list11->num_rows;$y++){
                             $row00=$list11->fetch_assoc();
                             $d=$row00["docname"];
-                            echo "<option value='$d' label='Médecin: $d'></option>";
+                            echo "<option value='$d' label='Doctor: $d'></option>";
                         }
 
-                        // Titres de sessions
+                        // Session titles
                         for ($y=0;$y<$list12->num_rows;$y++){
                             $row00=$list12->fetch_assoc();
                             $d=$row00["title"];
@@ -127,11 +127,11 @@ $today = date('Y-m-d');
                         }
                         echo '</datalist>';
                         ?>
-                        <input type="Submit" value="Rechercher" class="login-btn btn-primary btn" style="padding: 10px 25px;">
+                        <input type="Submit" value="Search" class="login-btn btn-primary btn" style="padding: 10px 25px;">
                     </form>
                 </td>
                 <td width="15%">
-                    <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">Date du jour</p>
+                    <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">Today's Date</p>
                     <p class="heading-sub12" style="padding: 0;margin: 0;"><?php echo $today; ?></p>
                 </td>
                 <td width="10%">
@@ -173,16 +173,16 @@ $today = date('Y-m-d');
                                             <td style="width:50%;" rowspan="2">
                                                 <div class="dashboard-items search-items">
                                                     <div style="width:100%">
-                                                        <div class="h1-search" style="font-size:25px;">Détails de la session</div><br><br>
+                                                        <div class="h1-search" style="font-size:25px;">Session Details</div><br><br>
                                                         <div class="h3-search" style="font-size:18px;line-height:30px">
-                                                            Nom du médecin: &nbsp;<b>'.$docname.'</b><br>
-                                                            Email du médecin: &nbsp;<b>'.$docemail.'</b>
+                                                            Doctor\'s Name: &nbsp;<b>'.$docname.'</b><br>
+                                                            Doctor\'s Email: &nbsp;<b>'.$docemail.'</b>
                                                         </div><br>
                                                         <div class="h3-search" style="font-size:18px;">
-                                                            Titre de la session: '.$title.'<br>
-                                                            Date prévue: '.$scheduledate.'<br>
-                                                            Heure de début: '.$scheduletime.'<br>
-                                                            Frais de consultation: <b>LKR.2 000.00</b>
+                                                            Session Title: '.$title.'<br>
+                                                            Scheduled Date: '.$scheduledate.'<br>
+                                                            Start Time: '.$scheduletime.'<br>
+                                                            Consultation Fee: <b>LKR.2 000.00</b>
                                                         </div><br>
                                                     </div>
                                                 </div>
@@ -191,7 +191,7 @@ $today = date('Y-m-d');
                                                 <div class="dashboard-items search-items">
                                                     <div style="width:100%;padding:15px;">
                                                         <div class="h1-search" style="font-size:20px;text-align:center;">
-                                                            Votre numéro de rendez-vous
+                                                            Your Appointment Number
                                                         </div>
                                                         <center>
                                                             <div class="dashboard-icons" style="width:90%;font-size:70px;font-weight:800;text-align:center;color:var(--btnnictext);background-color: var(--btnice)">'.$apponum.'</div>
@@ -202,7 +202,7 @@ $today = date('Y-m-d');
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input type="Submit" class="login-btn btn-primary btn btn-book" style="margin-left:10px;padding:10px;width:95%;text-align:center;" value="Réserver maintenant" name="booknow">
+                                                    <input type="Submit" class="login-btn btn-primary btn btn-book" style="margin-left:10px;padding:10px;width:95%;text-align:center;" value="Book Now" name="booknow">
                                                 </td>
                                             </tr>
                                         </form>

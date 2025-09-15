@@ -949,7 +949,7 @@ if ($database) {
                                                     <center>
                                                     <img src="../img/notfound.svg" width="25%">
                                                     <br>
-                                                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Nous n\'avons rien trouvé correspondant à vos mots-clés !</p>
+                                                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Nous avons rien trouvé correspondant à vos mots-clés !</p>
                                                     <a class="non-style-link" href="schedule.php"><button class="login-btn btn-primary-soft btn" style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Afficher toutes les sessions &nbsp;</button>
                                                     </a>
                                                     </center>

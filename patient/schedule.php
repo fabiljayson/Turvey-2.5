@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/animations.css">  
-    <link rel="stylesheet" href="../css/main.css">  
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
-        
+
     <title>Sessions</title>
     <style>
         .popup{
@@ -32,7 +32,7 @@ if(isset($_SESSION["user"])){
     header("location: ../login.php");
 }
 
-// Importer la base de données
+// Database import
 include("../connection.php");
 $sqlmain= "select * from patient where pemail=?";
 $stmt = $database->prepare($sqlmain);
@@ -63,7 +63,7 @@ $today = date('Y-m-d');
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="../logout.php"><input type="button" value="Déconnexion" class="logout-btn btn-primary-soft btn"></a>
+                                <a href="../logout.php"><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
                             </td>
                         </tr>
                     </table>
@@ -71,27 +71,27 @@ $today = date('Y-m-d');
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-home">
-                    <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Accueil</p></div></a>
+                    <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Home</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-doctor">
-                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">Tous les médecins</p></div></a>
+                    <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-session menu-active menu-icon-session-active">
-                    <a href="schedule.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Sessions programmées</p></div></a>
+                    <a href="schedule.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Scheduled Sessions</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-appoinment">
-                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Mes réservations</p></div></a>
+                    <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">My Bookings</p></div></a>
                 </td>
             </tr>
             <tr class="menu-row">
                 <td class="menu-btn menu-icon-settings">
-                    <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Paramètres</p></div></a>
+                    <a href="settings.php" class="non-style-link-menu"><div><p class="menu-text">Settings</p></div></a>
                 </td>
             </tr>
         </table>
@@ -100,7 +100,7 @@ $today = date('Y-m-d');
 <?php
 $sqlmain= "select * from schedule inner join doctor on schedule.docid=doctor.docid where schedule.scheduledate>='$today' order by schedule.scheduledate asc";
 $insertkey="";
-$searchtype="Toutes";
+$searchtype="All";
 
 if($_POST){
     if(!empty($_POST["search"])){
@@ -110,7 +110,7 @@ if($_POST){
         schedule.title='$keyword' or schedule.title like '$keyword%' or schedule.title like '%$keyword%' or 
         schedule.scheduledate like '$keyword%' or schedule.scheduledate like '%$keyword%') order by schedule.scheduledate asc";
         $insertkey=$keyword;
-        $searchtype="Résultat de recherche : ";
+        $searchtype="Search result: ";
     }
 }
 
@@ -121,11 +121,11 @@ $result= $database->query($sqlmain);
     <table border="0" width="100%" style="border-spacing:0;margin:0;padding:0;margin-top:25px;">
         <tr>
             <td width="13%">
-                <a href="schedule.php"><button class="login-btn btn-primary-soft btn btn-icon-back" style="padding:11px 0;margin-left:20px;width:125px">Retour</button></a>
+                <a href="schedule.php"><button class="login-btn btn-primary-soft btn btn-icon-back" style="padding:11px 0;margin-left:20px;width:125px">Back</button></a>
             </td>
             <td>
                 <form action="" method="post" class="header-search">
-                    <input type="search" name="search" class="input-text header-searchbar" placeholder="Rechercher médecin, titre ou date (AAAA-MM-JJ)" list="doctors" value="<?php echo $insertkey ?>">&nbsp;&nbsp;
+                    <input type="search" name="search" class="input-text header-searchbar" placeholder="Search doctor, title or date (YYYY-MM-DD)" list="doctors" value="<?php echo $insertkey ?>">&nbsp;&nbsp;
                     <?php
                     echo '<datalist id="doctors">';
                     $list11 = $database->query("select DISTINCT * from doctor;");
@@ -142,11 +142,11 @@ $result= $database->query($sqlmain);
                     }
                     echo '</datalist>';
                     ?>
-                    <input type="submit" value="Rechercher" class="login-btn btn-primary btn" style="padding:10px 25px;">
+                    <input type="submit" value="Search" class="login-btn btn-primary btn" style="padding:10px 25px;">
                 </form>
             </td>
             <td width="15%">
-                <p style="font-size:14px;color:rgb(119,119,119);text-align:right;">Date du jour</p>
+                <p style="font-size:14px;color:rgb(119,119,119);text-align:right;">Today's Date</p>
                 <p class="heading-sub12" style="padding:0;margin:0;"><?php echo $today; ?></p>
             </td>
             <td width="10%">
@@ -169,8 +169,8 @@ $result= $database->query($sqlmain);
                                 if($result->num_rows==0){
                                     echo '<tr><td colspan="4"><br><center>
                                         <img src="../img/notfound.svg" width="25%">
-                                        <p style="font-size:20px;color:rgb(49,49,49)">Aucun résultat trouvé pour vos critères !</p>
-                                        <a class="non-style-link" href="schedule.php"><button class="login-btn btn-primary-soft btn">Afficher toutes les sessions</button></a>
+                                        <p style="font-size:20px;color:rgb(49,49,49)">No results found for your criteria!</p>
+                                        <a class="non-style-link" href="schedule.php"><button class="login-btn btn-primary-soft btn">Show all sessions</button></a>
                                         </center><br></td></tr>';
                                 } else {
                                     for($x=0;$x<($result->num_rows);$x++){
@@ -189,8 +189,8 @@ $result= $database->query($sqlmain);
                                                     <div style="width:100%">
                                                         <div class="h1-search">'.substr($title,0,21).'</div><br>
                                                         <div class="h3-search">'.substr($docname,0,30).'</div>
-                                                        <div class="h4-search">'.$scheduledate.'<br>Démarre à: <b>@'.substr($scheduletime,0,5).'</b> (24h)</div><br>
-                                                        <a href="booking.php?id='.$scheduleid.'"><button class="login-btn btn-primary-soft btn" style="padding:11px 0;width:100%">Réserver maintenant</button></a>
+                                                        <div class="h4-search">'.$scheduledate.'<br>Starts at: <b>@'.substr($scheduletime,0,5).'</b> (24h)</div><br>
+                                                        <a href="booking.php?id='.$scheduleid.'"><button class="login-btn btn-primary-soft btn" style="padding:11px 0;width:100%">Book now</button></a>
                                                     </div>
                                                 </div>
                                             </td>';

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/admin.css">
         
-    <title>Docteurs</title>
+    <title>Doctors</title>
     <style>
         .popup{
             animation: transitionIn-Y-bottom 0.5s;
@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
 <td colspan="2">
-    <a href="../logout.php" ><input type="button" value="Déconnexion" class="logout-btn btn-primary-soft btn"></a>
+    <a href="../logout.php" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
 </td>
 </tr>
 </table>
@@ -69,22 +69,22 @@
 </tr>
 <tr class="menu-row" >
     <td class="menu-btn menu-icon-dashbord" >
-        <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Tableau de bord</p></a></div></a>
+        <a href="index.php" class="non-style-link-menu"><div><p class="menu-text">Dashboard</p></a></div></a>
     </td>
 </tr>
 <tr class="menu-row">
     <td class="menu-btn menu-icon-doctor menu-active menu-icon-doctor-active">
-        <a href="doctors.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Médecins</p></a></div>
+        <a href="doctors.php" class="non-style-link-menu non-style-link-menu-active"><div><p class="menu-text">Doctors</p></a></div>
     </td>
 </tr>
 <tr class="menu-row" >
     <td class="menu-btn menu-icon-schedule">
-        <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Emploi du temps</p></div></a>
+        <a href="schedule.php" class="non-style-link-menu"><div><p class="menu-text">Schedule</p></div></a>
     </td>
 </tr>
 <tr class="menu-row">
     <td class="menu-btn menu-icon-appoinment">
-        <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Rendez-vous</p></a></div>
+        <a href="appointment.php" class="non-style-link-menu"><div><p class="menu-text">Appointments</p></a></div>
     </td>
 </tr>
 <tr class="menu-row" >
@@ -99,13 +99,13 @@
     <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;margin-top:25px; ">
         <tr >
             <td width="13%">
-                <a href="doctors.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Retour</font></button></a>
+                <a href="doctors.php" ><button  class="login-btn btn-primary-soft btn btn-icon-back"  style="padding-top:11px;padding-bottom:11px;margin-left:20px;width:125px"><font class="tn-in-text">Back</font></button></a>
             </td>
             <td>
                 
                 <form action="" method="post" class="header-search">
 
-                    <input type="search" name="search" class="input-text header-searchbar" placeholder="Rechercher nom ou e-mail du médecin" list="doctors">&nbsp;&nbsp;
+                    <input type="search" name="search" class="input-text header-searchbar" placeholder="Search doctor name or email" list="doctors">&nbsp;&nbsp;
                     
                     <?php
                         echo '<datalist id="doctors">';
@@ -122,14 +122,14 @@
                     echo ' </datalist>';
 ?>
                    
-                    <input type="Submit" value="Rechercher" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
+                    <input type="Submit" value="Search" class="login-btn btn-primary btn" style="padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
                 
                 </form>
                 
             </td>
             <td width="15%">
                 <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
-                    Date du jour
+                    Today's Date
                 </p>
                 <p class="heading-sub12" style="padding: 0;margin: 0;">
                     <?php 
@@ -149,7 +149,7 @@
        
         <tr >
             <td colspan="2" style="padding-top:30px;">
-                <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Ajouter un nouveau médecin</p>
+                <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Add a new doctor</p>
             </td>
             <td colspan="2">
                 <a href="?action=add&id=none&error=0" class="non-style-link"><button  class="login-btn btn-primary btn button-icon"  style="display: flex;justify-content: center;align-items: center;margin-left:75px;background-image: url('../img/icons/add.svg');">Ajouter</font></button>
@@ -419,7 +419,7 @@ echo '
                             </tr>
                             <tr>
                                 <td>
-                                    <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Ajouter un nouveau médecin.</p><br><br>
+                                    <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Add a new doctor.</p><br><br>
                                 </td>
                             </tr>
                             
